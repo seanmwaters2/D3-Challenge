@@ -54,7 +54,7 @@ d3.csv("assets/data/data.csv").then(function(healthData) {
     chartGroup.append("g")
       .call(leftAxis);
 
-    // Step 6: Initialize tool tip
+    // Step 5: Initialize tool tip
     // ==============================
     var toolTip = d3.tip()
       .attr("class", "d3-tip")
@@ -63,15 +63,16 @@ d3.csv("assets/data/data.csv").then(function(healthData) {
         return (`${d.state}<br> Age (Median): ${d.age}<br>Smokers(%): ${d.smokes}`);
       });
 
-    // Step 7: Create tooltip in the chart
+    // Step 6: Create tooltip in the chart
     // ==============================
     chartGroup.call(toolTip);
-    // Step 5: Create Circles
+    
+  // Step 5: Create Circles
     // ==============================
     var circleGroup = chartGroup.selectAll("circle")
             .data(healthData)
             .enter()
-
+    //creates the circles
     circleGroup
       .append("circle")
       .attr("cx", d => xLinearScale(d.age))
@@ -79,7 +80,7 @@ d3.csv("assets/data/data.csv").then(function(healthData) {
       .attr("r", "13")
       .attr("fill", "darkcyan")
       .attr("opacity", ".5");
-
+    //creates text and event listener for tooltip
     circleGroup
       .append("text")
       .attr("font-size", "13px")
@@ -94,10 +95,6 @@ d3.csv("assets/data/data.csv").then(function(healthData) {
       })
       .on("mouseout", toolTip.hide);
     
-
-    
-
-
 
     // Create axes labels
     chartGroup.append("text")
